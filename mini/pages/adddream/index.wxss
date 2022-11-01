@@ -1,0 +1,202 @@
+page{
+    background-color: #E7F1FC;
+}
+.add_title{
+    display: flex;
+    width: 680rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-radius: 20rpx 20rpx 20rpx 20rpx;
+    background-color: rgba(255, 255, 255, 100);
+    text-align: center;
+    margin-bottom: 4rpx;
+    margin: 24rpx auto;
+    align-items: center;
+}
+.add_title_inp{
+    margin-right: 28rpx;
+    width: inherit;
+    height: 60rpx;
+    text-align: left;
+}
+.add_title_size{
+    margin-left: 28rpx;
+    font-size: 19px;
+    font-family: PingFangSC-regular;
+    width: 166rpx;
+    text-align: left;
+    color: #1485EE;
+}
+.add_content{
+    width: 680rpx;
+    height: 400rpx;
+    border-radius: 20rpx 20rpx 20rpx 20rpx;
+    background-color: rgba(255, 255, 255, 100);
+    text-align: center;
+    margin-bottom: 4rpx;
+    margin: 28rpx auto;
+}
+.add_content_title{
+    margin: auto;
+    margin-left: 28rpx;
+    margin-right: 28rpx;
+    height: 100rpx;
+    border-bottom: 2rpx solid rgba(242, 242, 242, 100);
+    text-align: left;
+    line-height: 100rpx;
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    font-family: PingFangSC-regular;
+    color: #1485EE;
+}
+.add_title_switch{
+    margin-right: 28rpx;
+    margin-left: inherit;
+}
+.add_button{
+    margin: auto;
+    margin-top: 74rpx;
+    width: 196rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    border-radius: 8rpx;
+    background-color: rgba(24, 144, 255, 100);
+    text-align: center;
+    color: rgba(255, 255, 255, 100);
+    font-size: 17px; 
+    font-family: PingFangSC-regular;
+}
+.add_button:active{
+    background-color: rgba(0 130 251);
+}
+.add_Mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.47);
+    z-index: 999;
+}
+.add_Mask_content{
+    left: 12.5%;
+    top: 35%;
+    position: absolute;
+    width: 560rpx;
+    height: 330rpx;
+    line-height:40rpx;
+    z-index: 1000;
+    border-radius: 8rpx;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+.add_Mask_content_top{
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    margin-top: 50rpx;
+}
+.add_Mask_content_cont{
+    margin: 30rpx auto;
+    width: 458rpx;
+    height: 88rpx;
+    color: rgba(136, 136, 136, 100);
+    font-size: 15px;
+    text-align: left;
+    font-family: PingFangSC-regular;
+}
+.add_content_main{
+    text-align: left;
+    height: 300rpx;
+    margin-left: 28rpx;
+    margin-right: 28rpx;
+    overflow: hidden;
+}
+.add_content_main_text{
+    margin-left: 0rpx;
+    margin-right: 0rpx;
+    margin-top: 40rpx;
+    word-wrap: break-word;
+    word-break: normal;
+}
+.btn_modify{
+    margin: 98rpx auto;
+    display: flex;
+    justify-content: center;
+    
+}
+.btn_modify view{
+    color: rgba(255, 255, 255, 100);
+    font-size: 17px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    width: 196rpx;
+    height: 74rpx;
+    line-height: 74rpx;
+    border-radius: 8rpx;
+    background-color: rgba(191, 191, 191, 100);
+    text-align: center;
+}
+.btn_modify view:nth-child(1){
+    margin-right: 48rpx;
+}
+.delet_Mask{
+    position: fixed ;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(85, 102, 116, 0.5);
+    z-index: 999;
+}
+.delet_Mask_content{
+    left: 14%;
+    top: 35%;
+    position: absolute;
+    width: 540rpx;
+    height: 330rpx;
+    line-height: 40rpx;
+    z-index: 1000;
+    border-radius: 8rpx;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+.delet_Mask_content_top{
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    margin-top: 50rpx;
+}
+.delet_Mask_content_cont{
+    margin: 48rpx 40rpx auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.delet_Mask_content_cont_size{
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    text-align: left;
+    font-family: PingFangSC-regular;
+    margin-left: 70rpx;
+}
+.delet_Mask_content_cont_size:nth-child(2){
+    margin-top: 40rpx;
+}
+.delet_Mask_content_button{
+    margin: 88rpx auto;
+    display: flex;
+    justify-content: space-between;
+    width: 360rpx;
+    font-size: 18px;
+    font-family: PingFangSC-regular;
+}
+.delet_Mask_content_button_config{
+    color: rgba(0, 0, 0, 1);
+}
+.delet_Mask_content_button_cancel{
+    color: rgba(3, 127, 249, 100);
+}

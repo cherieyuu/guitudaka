@@ -1,0 +1,12 @@
+<!--pages/Completed/index.wxml-->
+<view class="mine-Implemented">
+    <view style="border-bottom:2rpx solid rgba(242, 242, 242, 100)" bindtap="implementedshow" class="mine-Implemented_top">
+        <view class="mine-Implemented_top_left">已实现的愿望 —  {{listData.length}} 个</view>    
+    </view>
+    <view style="height:1076rpx" class="mine-Implemented_main">
+        <scroll-view scroll-y="true" style="height: 762rpx;">
+            <view class="mine-Implemented_main_check" wx:for="{{listData}}" wx:key="index"><radio class="mine-Implemented_main_check_radio" color="rgba(24, 144, 255, 100)"  checked="true"/>{{item.title}}</view>
+        </scroll-view>
+        <image class="mine_image" src="../../image/love.png"></image>
+    </view>
+</view>

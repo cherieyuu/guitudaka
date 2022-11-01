@@ -1,0 +1,35 @@
+<view class="mine">
+    <view class="mine_title">
+       <view class="mine_title_portrait">
+           <view class="mine_title_portrait-top">
+                <image src="{{userinfo.avatarUrl}}"></image>
+                <view>{{userinfo.nickName}}</view>
+           </view>
+           <view class="mine_title_portrait-top" bindtap="onMask">
+                <image src="{{userinfo.avatarUrl==datalist.inviterimg?datalist.recipientimg:datalist.inviterimg || '../../image/love.png' }}"></image>
+                <view>{{userinfo.nickName==datalist.inviterName?datalist.recipientName:datalist.inviterName || '暂无' }}</view>
+           </view>
+       </view> 
+       <view class="mine_title_button">我们已经相爱{{day}}天</view>
+    </view>
+    <view class="mine_main">
+        <view class="mine_main_cont" bindtap="router" data-id="{{openid==datalist.inviter?datalist.recipient:datalist.inviter}}" data-url="/pages/Completed/index">
+            <view class="mine_main_cont_top">已实现愿望</view>
+            <view class="mine_main_cont_left"></view>
+        </view>
+        <view class="mine_main_cont" bindtap="router" data-id="{{datalist._id}}" data-url="/pages/modification/index">
+            <view class="mine_main_cont_top" >纪念日</view>
+            <view class="mine_main_cont_right"></view>
+        </view>
+    </view>
+</view>
+<view class="add_Mask" wx:if="{{maskshow}}">
+    <view class="add_Mask_content">
+        <view class="add_Mask_content_top">修改Ta</view>
+        <view class="add_Mask_content_cont">是否确认修改Ta？如果确认，双方将清空所有信息，请提前备份</view>
+        <view class="add_Mask_content_button">
+            <view class="add_Mask_content_button_config" bindtap="updateTa">确认修改</view>
+            <view class="add_Mask_content_button_cancel" bindtap="offMask">放弃修改</view>
+        </view>
+    </view>
+</view>

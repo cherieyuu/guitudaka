@@ -1,0 +1,13 @@
+<!--pages/shareappmessage/index.wxml-->
+<view class="shareapp" wx:if="{{show}}">
+    <view class="shareapp-main">
+        <view class="shareapp-main_title">愿望清单邀请</view>
+        <view class="shareapp-main_content">
+            邀请你加入愿望清单，希望与你一起完成更多愿望！
+        </view>
+        <view class="shareapp-main_button">
+            <navigator class="shareapp-main_button_Refuse" target="miniProgram" open-type="exit">拒绝加入</navigator>
+            <view class="shareapp-main_button_confirm" bindtap="Confirm">确认加入</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,23 @@
+<view class="tadream">
+    <view class="tadream_main" wx:if="{{msgList.length>0}}">
+        <view bindtap="router" 
+        wx:for="{{msgList}}" 
+        wx:key="index" 
+        data-item="{{item}}"
+        data-id="{{item._id}}"
+        class='tadream_main_container {{showIndex==index?"arrow":""}} {{animation==index?"arrow_box":""}}'>
+            <view class="tadream_main_container_size">
+            {{item.title}}
+            </view>
+        </view>
+    </view>
+    <view class="tadream-nomain" wx:if="{{!msgList.length>0&&!recipientId}}">
+        <image src="../../image/09.png"></image>
+        <image src="../../image/09size.png"></image>
+    </view>
+    <view class="notdata" wx:if="{{!msgList.length>0&&recipientId}}">
+        <image src="../../image/08.png"></image>
+        <view>Ta暂未分享愿望 邀请一起参与</view>
+    </view>
+    <view bindtap="borshow" class="tadream_add" wx:if="{{msgList.length>0}}"></view>
+</view>

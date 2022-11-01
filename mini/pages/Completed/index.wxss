@@ -1,0 +1,96 @@
+/* pages/Completed/index.wxss */
+page{
+    background-color: #E7F1FC;
+}
+.mine-Implemented{
+    position: absolute;
+    left: 26rpx;
+    top: 42rpx;
+    width: 700rpx;
+    border-radius: 20rpx 20rpx 20rpx 20rpx;
+    background-color: rgba(255, 255, 255, 100);
+}
+.mine-Implemented_top{
+    margin: auto;
+    height: 98rpx;
+    width: 628rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2rpx solid rgba(242, 242, 242, 100);
+}
+.mine-Implemented_top_left{
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    font-family: PingFangSC-regular;
+}
+.mine-Implemented_top_right{
+    width: 38rpx;
+    height: 14rpx;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAOCAMAAACfKyXEAAAAAXNSR0IArs4c6QAAADlQTFRFAAAAEIDvGIfvFYXvFIPvE4bvFYXvFITvFIXtE4XtFYTtFIXuFIXuFITuFIXuFIXuFIXuFIXuFIXuHwMnMQAAABJ0Uk5TABAgMEBQYHCAkKCwwNDg4vHy20EEUQAAAIRJREFUKM+FUe0ChCAIEzWlC/vg/R82D7wrLWv/hLExMaZFQPTmBS5xxgSPpLixYH2Qs8R/jD25YRWZQQWTu+PAxL+VdDnGK8kv38YW9TUKLdlGqJTd/dA5f2VRFqAjBEphbtKHEqbK/4HOx0ijHqmhJos3oPa2c7BZaDkdEYXuOQBzO+7C9gpIOWLNdwAAAABJRU5ErkJggg==);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    transform: rotate(90deg);
+
+}
+.of_active {
+    transform: rotate(90deg);
+    animation: ggglow 600ms ease-out;
+}
+@keyframes ggglow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
+.on_active {
+    transform: rotate(0deg);
+    animation: gglow 600ms ease-out;
+}
+@keyframes gglow {
+    0% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+.mine-Implemented_main{
+    margin: auto;
+    height: 468rpx;
+    width: 628rpx;
+    transition: height 0.5s;
+    overflow: hidden;
+}
+.mine-Implemented_main_check{
+    height: 60rpx;
+    padding-top: 10rpx;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+
+.mine-Implemented_main_check_radio{
+    margin-left: 30rpx;
+    margin-right: 22rpx;
+    display: flex;
+    align-items: center;
+}
+.mine_image{
+    height: 306rpx;
+    width: 254rpx;
+    float: right;
+}
+.wx-radio-input{
+    width: 42rpx !important;
+    height: 42rpx !important;
+}
+.wx-radio-input.wx-radio-input-checked::before{
+    top: 48% !important;
+    left: 47% !important;
+}

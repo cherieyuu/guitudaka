@@ -1,0 +1,40 @@
+<view class="modification">
+    <view class="modification_main">
+        <view class="modification_main_container">
+            <view class="modification_main_container_size">
+                <view class="modification_main_container_size_icon"></view>
+                <view class="modification_main_container_size_data">标题</view>
+            </view>
+            <view class="modification_main_container_data">
+                <input type="text" style="font-size: 18px; text-align: right; margin-right: 50rpx;" bindinput="inputvalue" placeholder-style="font-size:18px;" placeholder="请输入纪念日标题" value="{{inputdata}}"/>
+            </view>
+        </view>
+        <view class="modification_main_container">
+            <view class="modification_main_container_size">
+                <view class="modification_main_container_size_icon"></view>
+                <view class="modification_main_container_size_data">日期</view>
+            </view>
+            <view class="modification_main_container_data">
+                <picker mode="date" value="{{date}}" start="1990-01-01" end="2023-01-01" bindchange="bindDateChange">
+                    <view class="picker">
+                        {{date}}
+                        <view class="modification_main_container_data_tip"></view>
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <!-- <view class="modification_main_container">
+            <view class="modification_main_container_size">
+                <view class="modification_main_container_size_icon"></view>
+                <view class="modification_main_container_size_data">年度提醒</view>
+            </view>
+            <view class="modification_main_container_data" bindtap="remind">
+                <view class="modification_main_container_data_remind">{{remind}}</view>
+                <view class="modification_main_container_data_tip"></view>
+            </view>
+        </view> -->
+    </view>
+    <view class="modification_button" bindtap="preservation">保存</view>
+</view>
+
+

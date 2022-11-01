@@ -1,0 +1,76 @@
+page{
+    background-color: #E7F1FC;
+}
+.shareapp-main{
+    margin: 528rpx auto;
+    width: 560rpx;
+    height: 292rpx;
+    border-radius: 8rpx 8rpx 8rpx 8rpx;
+    background-color: rgba(255, 255, 255, 100);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.shareapp-main_title{
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    margin-bottom: 20rpx;
+    margin-top: 35rpx;
+}
+.shareapp-main_button{
+    display: flex;
+    justify-content: space-between;
+    width: 420rpx;
+    font-size: 18px;
+    font-family: PingFangSC-regular;
+}
+.shareapp-main_content{
+    width: 390rpx;
+    height: 84rpx;
+    color: rgba(136, 136, 136, 100);
+    font-size: 15px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    margin-bottom: 30rpx;
+}
+.shareapp-main_button_Refuse{
+    color: rgba(0, 0, 0, 1);
+}
+.shareapp-main_button_confirm{
+    color: rgba(2, 187, 0, 100);
+}
+.shareapp-refuse{
+    margin: 570rpx auto;
+    width: 560rpx;
+    height: 330rpx;
+    border-radius: 8rpx 8rpx 8rpx 8rpx;
+    background-color: rgba(255, 255, 255, 100);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.shareapp-refuse_title{
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    margin-bottom: 48rpx;
+    margin-top: 35rpx;
+}
+.shareapp-refuse_content{
+    width: 390rpx;
+    height: 84rpx;
+    color: rgba(136, 136, 136, 100);
+    font-size: 15px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    margin-bottom: 30rpx;
+}
+.shareapp-refuse_button_confirm{
+    color: rgba(2, 187, 0, 100);
+    font-size: 18px;
+    text-align: center;
+    font-family: PingFangSC-regular;
+}

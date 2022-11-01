@@ -1,0 +1,31 @@
+<!--pages/mtydream/index.wxml-->
+<view class="mydream" wx:if="{{taskList.length>0}}">
+    <view class="mydream_main">
+        <view>
+            <view class="jindu-title">今日进度</view>
+            <view class="pie" style="--percentage: {{taskDonePercent}}"></view>
+            <view class="divide-line"></view>
+            <view class="divide-line"></view>
+        </view>
+        <view>
+            <view class="mydream-top-container">
+                <view>{{today}}</view>
+                <view bindtap="addrouter" class="mydream_add"></view>
+            </view>
+            <view class="mydream_main_container slide" wx:for="{{taskList}}" wx:key="index" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
+                <view bindtap="router" data-item="{{item}}" data-id="{{item._id}}" class="mydream_main_container_size {{item.isDone ? 'gray-bg' : ''}}">{{item.task_des}}</view>
+                <view wx:if="{{item.isDone === true}}">
+                    <icon type="success_no_circle" size="30" color="#0b561d"/>
+                </view>
+                <view wx:else class="complete_btn" data-id="{{item._id}}" bindtap="complete">
+                    完成
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="notdata" wx:else>
+    <image src="../../image/08.png"></image>
+    <view>还没有许愿~  快来许愿吧！</view>
+</view>
+

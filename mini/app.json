@@ -1,0 +1,16 @@
+{
+    "pages": [
+        "pages/mydream/index",
+        "pages/adddream/index",
+        "pages/shareappmessage/index",
+        "pages/login/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "龟兔打卡",
+        "navigationBarTextStyle": "black"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

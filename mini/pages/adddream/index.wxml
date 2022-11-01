@@ -1,0 +1,42 @@
+<!--pages/adddream/index.wxml-->
+<view class="add">
+    <view class="add_title">
+        <view class="add_title_size">标题</view>
+        <input bindinput="inputTitle" disabled="{{contentshow=='true'? false : true}}" class="add_title_inp" placeholder="快来写下你的愿望吧！" value="{{title}}" type="text"/>
+    </view>
+    <view class="add_content">
+        <view class="add_content_title">更多信息</view>
+        <view class="add_content_main">
+            <textarea disabled="{{contentshow=='true'? false : true}}" class="add_content_main_text" bindblur="bindinput" placeholder="{{textarea}}" value="{{value}}" />
+        </view>
+    </view>
+    <view class="add_title" wx:if="{{contentshow=='true'}}">
+        <view class="add_title_size">告诉Ta</view>
+        <view class="add_title_switch"><switch disabled="{{!recipientId}}" color="rgba(24, 144, 255, 100)" checked="{{switchvalue}}" bindchange="switch1Change"/></view>
+    </view>
+    <view class="add_button" bindtap="createWishes" wx:if="{{contentshow=='true'&&modifyshow=='true'}}">
+        许下愿望
+    </view>
+    <view wx:if="{{buttonshow=='true'}}" class="btn_modify">
+        <view bindtap="ontips">删除</view>
+        <view bindtap="modifybutton">更新</view>
+    </view>
+</view>
+<view class="add_Mask" bindtap="offMask" wx:if="{{maskshow}}">
+    <view class="add_Mask_content">
+        <view class="add_Mask_content_top">未授权邀请提醒</view>
+        <view class="add_Mask_content_cont">你当前仍未授权邀请Ta，请前往【Ta的愿望】页面邀请Ta</view>
+    </view>
+</view>
+<view class="delet_Mask" wx:if="{{ontips}}">
+    <view class="delet_Mask_content">
+        <view class="delet_Mask_content_cont">
+            <view class="delet_Mask_content_cont_size">确定删除本条愿望吗？</view>
+            <view class="delet_Mask_content_cont_size">删除后将无法恢复哟</view>
+        </view>
+        <view class="delet_Mask_content_button">
+            <view class="delet_Mask_content_button_config" bindtap="configdelete">确认删除</view>
+            <view class="delet_Mask_content_button_cancel" bindtap="offtips">取消删除</view>
+        </view>
+    </view>
+</view>
