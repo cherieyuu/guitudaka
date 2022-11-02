@@ -14,7 +14,7 @@ const getDay = date => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
 
-  return `${[year, month, day].map(formatNumber).join('/')}`
+  return `${[year, month, day].map(formatNumber).join('-')}`
 }
 
 const formatNumber = n => {
@@ -44,11 +44,11 @@ const openidData = async () => {
 
 // day: 2022/11/1
 const getCurrentDayStart = day => {
-  return Date.parse(day);
+  return Date.parse(day.replace(/-/g, '/'));
 }
 
 const getCurrentDayEnd = day => {
-  return Date.parse(day + ' 23:59:59');
+  return Date.parse(day.replace(/-/g, '/') + ' 23:59:59');
 }
 
 module.exports = {

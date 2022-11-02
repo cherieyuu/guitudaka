@@ -13,7 +13,7 @@ Page({
   data: {
     userInfo: "",
     taskList: [],
-    today: "",
+    currentDay: "",
     taskDonePercent: 0,
 
     // 滑动的起始坐标
@@ -28,13 +28,12 @@ Page({
     // this.Listdata();
     // this.init();
     userId = wx.getStorageSync('userId');
-    this.initToday();
+    this.setCurrentDay(getDay(new Date()));
     this.getTaskList();
   },
-  initToday() {
-    const date = new Date();
+  setCurrentDay(day) {
     this.setData({
-      today: getDay(date)
+      currentDay: day
     })
   },
   async getTaskList() {
@@ -46,8 +45,8 @@ Page({
       })
       .get();
     console.log('taskListResp', taskListResp);
-    const currentDayStart = getCurrentDayStart(this.data.today);
-    const currentDayEnd = getCurrentDayEnd(this.data.today);
+    const currentDayStart = getCurrentDayStart(this.data.currentDay);
+    const currentDayEnd = getCurrentDayEnd(this.data.currentDay);
     data = await Promise.all(taskListResp.data.map(async (taskItem) => {
       const getTaskPunchResp =  await db.collection('task_punch')
         .where({
@@ -150,6 +149,12 @@ Page({
     //   url: `../adddream/index?content=${true}&modifyshow=${true}&buttonshow=${false}`,
     // })
   },
+
+  bindDatePickerChange(e) {
+    this.setCurrentDay(e.detail.value);
+    this.getTaskList();
+  },
+
   init() {
     // 设置是否完成为false
     let {

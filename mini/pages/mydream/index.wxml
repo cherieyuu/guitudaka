@@ -3,13 +3,15 @@
     <view class="mydream_main">
         <view>
             <view class="jindu-title">今日进度</view>
-            <view class="pie" style="--percentage: {{taskDonePercent}}"></view>
+            <view class="pie" style="--percentage: {{taskDonePercent}}">{{taskDonePercent === 0 ? '今天还没有打卡哦，快去打卡吧！' : ''}}</view>
             <view class="divide-line"></view>
             <view class="divide-line"></view>
         </view>
         <view>
             <view class="mydream-top-container">
-                <view>{{today}}</view>
+                <picker mode="date" bindchange="bindDatePickerChange">
+                    <view>{{currentDay}}</view>
+                </picker>
                 <view bindtap="addrouter" class="mydream_add"></view>
             </view>
             <view class="mydream_main_container slide" wx:for="{{taskList}}" wx:key="index" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">

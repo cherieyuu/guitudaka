@@ -122,7 +122,12 @@ page{
     height: 500rpx;
     margin: 60rpx auto;
     border-radius: 50%;
+    border: 1rpx solid rgb(104, 170, 104);
     background: conic-gradient(rgb(104, 170, 104) calc(var(--percentage)*1%),#0000 0);
+    line-height: 500rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: gray;
 }
 
 .ok-icon {
