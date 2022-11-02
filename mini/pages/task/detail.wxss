@@ -1,0 +1,26 @@
+/* pages/task/detail.wxss */
+page {
+	background-color: #E7F1FC;
+}
+
+.detail-page {
+	margin: 30rpx;
+	color: #00000087;
+}
+
+.box-container {
+	border: 10rpx solid rgb(180, 197, 201);
+	padding: 12rpx;
+}
+
+.punch-item-container {
+	height: 80rpx;
+	line-height: 80rpx;
+	font-size: 50rpx;
+	color: cadetblue;
+}
+
+.punch-item-container::before {
+	content: '·';
+}
+

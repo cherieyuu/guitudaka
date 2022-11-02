@@ -1,4 +1,4 @@
-<!--pages/mtydream/index.wxml-->
+<!--pages/task/index.wxml-->
 <view class="mydream" wx:if="{{taskList.length>0}}">
     <view class="mydream_main">
         <view>

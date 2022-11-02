@@ -1,0 +1,10 @@
+<!--pages/task/detail.wxml-->
+<view class="detail-page">
+	<view class="box-container" wx:if="{{taskPunchList.length > 0}}">
+		该任务已打卡日期：
+		<view wx:for="{{taskPunchList}}" class="punch-item-container">{{item.punch_time}}</view>
+	</view>
+	<view wx:else>
+		该任务还未进行过打卡。
+	</view>
+</view>

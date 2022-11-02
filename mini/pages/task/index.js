@@ -1,6 +1,6 @@
 const { getDay, getCurrentDayStart, getCurrentDayEnd } = require("../../utils/util");
 
-// pages/mtydream/index.js
+// pages/task/index.js
 const app = getApp()
 const db = wx.cloud.database();
 let userId;
@@ -101,10 +101,13 @@ Page({
   router(e) {
     const id = e.currentTarget.dataset.id
     const data = e.currentTarget.dataset.item
-    var queryBean = JSON.stringify(data)
     wx.navigateTo({
-      url: `../adddream/index?content=true&modifyshow=false&buttonshow=true&id=${id}&data=` + queryBean,
+      url: `./detail?taskId=${id}`,
     })
+    // var queryBean = JSON.stringify(data)
+    // wx.navigateTo({
+    //   url: `../adddream/index?content=true&modifyshow=false&buttonshow=true&id=${id}&data=` + queryBean,
+    // })
   },
   async complete(e) {
     console.log(e);
@@ -158,30 +161,30 @@ Page({
   init() {
     // 设置是否完成为false
     let {
-      msgList
+      taskList
     } = this.data
-    for (let i = 0; i < msgList.length; i++) {
-      msgList[i].isMove = false;
+    for (let i = 0; i < taskList.length; i++) {
+      taskList[i].isMove = false;
     }
     this.setData({
-      msgList
+      taskList
     })
   },
 
   // 开始触摸，记录起始点的坐标
   touchstart(e) {
     let {
-      msgList
+      taskList
     } = this.data
     // 重置所有删除
-    msgList.map(i => {
+    taskList.map(i => {
       i.isMove = false
     })
 
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      msgList
+      taskList
     })
   },
 
@@ -193,7 +196,7 @@ Page({
     let {
       startX,
       startY,
-      msgList
+      taskList
     } = this.data
     let {
       clientX,
@@ -209,7 +212,7 @@ Page({
     });
     //滑动超过30度角 return
     if (Math.abs(angle) > 30) return;
-    msgList.forEach((i, j) => {
+    taskList.forEach((i, j) => {
       i.isMove = false
       if (j == index && clientX < startX) {
         // 左滑删除了
@@ -220,7 +223,7 @@ Page({
       }
     })
     this.setData({
-      msgList
+        taskList
     })
   },
 

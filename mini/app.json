@@ -1,6 +1,7 @@
 {
     "pages": [
-        "pages/mydream/index",
+        "pages/task/index",
+        "pages/task/detail",
         "pages/adddream/index",
         "pages/shareappmessage/index",
         "pages/login/index"
