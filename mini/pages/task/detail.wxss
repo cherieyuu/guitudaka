@@ -1,11 +1,14 @@
 /* pages/task/detail.wxss */
 page {
 	background-color: #E7F1FC;
+	height: 100%;
 }
 
 .detail-page {
+	position: relative;
 	margin: 30rpx;
 	color: #00000087;
+	height: 100%;
 }
 
 .box-container {
@@ -24,3 +27,8 @@ page {
 	content: '·';
 }
 
+.detail-page .detail-footer {
+	position: absolute;
+	bottom: 50rpx;
+	right: 20rpx;
+}

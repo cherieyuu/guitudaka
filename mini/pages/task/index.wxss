@@ -52,7 +52,8 @@ page{
     line-height: 98rpx;
 }
 
-.complete_btn {
+.mydream_main_container .complete_btn {
+    padding: 0;
     border-radius: 20rpx 20rpx 20rpx 20rpx;
     width: 150rpx;
     text-align: center;

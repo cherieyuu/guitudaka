@@ -7,4 +7,7 @@
 	<view wx:else>
 		该任务还未进行过打卡。
 	</view>
+	<view class="detail-footer" bindtap="deleteTask">
+		<button type="warn">删除任务</button>
+	</view>
 </view>

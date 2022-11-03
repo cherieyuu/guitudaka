@@ -23,7 +23,7 @@ App({
           if (userRes.data.length === 0) {
             db.collection('user').add({
               data: {
-                creat_time: Date.now()
+                create_time: Date.now(),
               }
             }).then(
               addUserRes => wx.setStorageSync('userId', addUserRes._id),

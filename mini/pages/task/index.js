@@ -13,8 +13,12 @@ Page({
   data: {
     userInfo: "",
     taskList: [],
-    currentDay: "",
     taskDonePercent: 0,
+
+    currentDay: "",
+    showToday: true,
+    userStartDay: "",
+    userEndDay: "",
 
     // 滑动的起始坐标
     startX: 0,
@@ -28,25 +32,56 @@ Page({
     // this.Listdata();
     // this.init();
     userId = wx.getStorageSync('userId');
+    this.initUserDay();
     this.setCurrentDay(getDay(new Date()));
     this.getTaskList();
   },
+  async initUserDay() {
+    const userResp = await db.collection('user').doc(userId).get();
+    const userStartDay = getDay(new Date(userResp.data.create_time));
+    const userEndDay = getDay(new Date());
+    this.setData({
+      userStartDay,
+      userEndDay,
+    })
+    console.log(this.data.userStartDay, this.data.userEndDay);
+  },
   setCurrentDay(day) {
     this.setData({
-      currentDay: day
+      currentDay: day,
     })
   },
   async getTaskList() {
-    console.log(userId);
-    let data;
-    const taskListResp = await db.collection('task')
-      .where({
-        user_id: userId
-      })
-      .get();
-    console.log('taskListResp', taskListResp);
+    let data, taskListResp;
     const currentDayStart = getCurrentDayStart(this.data.currentDay);
     const currentDayEnd = getCurrentDayEnd(this.data.currentDay);
+    if (this.data.showToday) {
+        taskListResp = await db.collection('task')
+          .where({
+            user_id: userId,
+            is_deleted: false,
+          })
+          .get();
+    } else {
+        taskListResp = await db.collection('task')
+            .where(
+                db.command.or([
+                    {
+                        user_id: userId,
+                        create_time: db.command.lt(currentDayEnd),
+                        is_deleted: false,
+                    },
+                    {
+                        user_id: userId,
+                        create_time: db.command.lt(currentDayEnd),
+                        is_deleted: true,
+                        delete_time: db.command.gt(currentDayEnd),
+                    }
+                ])
+            )
+            .get();  
+    }
+    console.log('taskListResp', taskListResp);
     data = await Promise.all(taskListResp.data.map(async (taskItem) => {
       const getTaskPunchResp =  await db.collection('task_punch')
         .where({
@@ -140,7 +175,8 @@ Page({
             data: {
               user_id: userId,
               task_des: res.content,
-              create_time: Date.now()
+              create_time: Date.now(),
+              is_deleted: false,
             }
           }).then(() => that.getTaskList());
         } else if (res.cancel) {
@@ -153,8 +189,17 @@ Page({
     // })
   },
 
+  setShowToday(v) {
+      this.setData({ showToday: v })
+  },
+
   bindDatePickerChange(e) {
     this.setCurrentDay(e.detail.value);
+    if (this.data.currentDay !== getDay(new Date())) {
+        this.setShowToday(false);
+    } else {
+        this.setShowToday(true);
+    }
     this.getTaskList();
   },
 
@@ -249,13 +294,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 1 // 根据tab的索引值设置
-      })
-    }
+    this.getTaskList();
   },
 
   /**

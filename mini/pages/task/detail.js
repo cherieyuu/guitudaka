@@ -9,20 +9,21 @@ Page({
      * 页面的初始数据
      */
     data: {
-        taskPunchList: []
+        taskPunchList: [],
+        taskId: '',
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        console.log('options', options);
-        this.getTaskPunchList(options.taskId);
+        this.setData({taskId: options.taskId});
+        this.getTaskPunchList();
     },
 
-    async getTaskPunchList(id) {
+    async getTaskPunchList() {
         const getTaskPunchListResp = await db.collection('task_punch').where({
-            task_id: id
+            task_id: this.data.taskId
         }).get();
         const taskPunchList = getTaskPunchListResp.data.map((item) => {
             item.punch_time = getDay(new Date(item.punch_time));
@@ -30,6 +31,15 @@ Page({
         })
         console.log(taskPunchList);
         this.setData({ taskPunchList });
+    },
+
+    deleteTask() {
+        db.collection('task').doc(this.data.taskId).update({
+            data: {
+                is_deleted: true,
+                delete_time: Date.now(),
+            }
+        }).then(() => wx.navigateBack());
     },
 
     /**
