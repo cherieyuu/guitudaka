@@ -1,0 +1,14 @@
+<!--pages/user/index.wxml-->
+<view class="user">
+	<view class="wave-container" />
+	<view class="user-avatar-container">
+		<image class="user-avatar" src="{{userinfo.avatarUrl}}"></image>
+		<view class="user-name">{{userinfo.nickName}}</view>
+	</view>
+	<view class="user-context">
+		<view>用户手册</view>
+		<view>版本详情</view>
+		<view>关于开发者</view>
+		<view >...</view>
+	</view>
+</view>

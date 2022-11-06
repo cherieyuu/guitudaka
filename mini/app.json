@@ -3,6 +3,7 @@
         "pages/task/index",
         "pages/task/detail",
         "pages/adddream/index",
+        "pages/user/index",
         "pages/shareappmessage/index",
         "pages/login/index"
     ],
@@ -11,6 +12,19 @@
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "龟兔打卡",
         "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [{
+            "pagePath": "pages/task/index",
+            "text": "打卡",
+            "iconPath": "./image/icon/bar-gray.jpg",
+            "selectedIconPath": "./image/icon/bar-green.jpg"
+        },{
+            "pagePath": "pages/user/index",
+            "text": "关于",
+            "iconPath": "./image/icon/user-gray.jpg",
+            "selectedIconPath": "./image/icon/user-green.jpg"
+        }]
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json"

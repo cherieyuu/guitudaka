@@ -129,7 +129,7 @@ Page({
         doneTaskNum++;
       }
     })
-    if (doneTaskNum === 0) return;
+    if (doneTaskNum === 0) return this.setData({ taskDonePercent: 0 });
     const newPercent = doneTaskNum / this.data.taskList.length * 100;
     this.setData({ taskDonePercent: newPercent});
   },
