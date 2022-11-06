@@ -31,6 +31,7 @@ Page({
   async onLoad(options) {
     // this.Listdata();
     // this.init();
+    console.log('onLoad', this.data);
     userId = wx.getStorageSync('userId');
     this.initUserDay();
     this.setCurrentDay(getDay(new Date()));
@@ -55,6 +56,10 @@ Page({
     let data, taskListResp;
     const currentDayStart = getCurrentDayStart(this.data.currentDay);
     const currentDayEnd = getCurrentDayEnd(this.data.currentDay);
+    wx.showLoading({
+      title: 'loading...',
+      mask: true,
+    })
     if (this.data.showToday) {
         taskListResp = await db.collection('task')
           .where({
@@ -99,6 +104,7 @@ Page({
     }));
     this.setData({ taskList: data });
     this.updateTaskPercent();
+    wx.hideLoading();
 
     // await db.collection('task').where({
     //   user_id: userId
@@ -294,6 +300,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    console.log('onShow', this.data);
     this.getTaskList();
   },
 

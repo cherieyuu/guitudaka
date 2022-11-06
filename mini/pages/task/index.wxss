@@ -84,16 +84,17 @@ page{
    transform: translateX(0);
 } */
 .notdata{
-    margin: 160rpx auto;
-    width: 590rpx;
-    height: 896rpx;
+    margin: 60rpx 30rpx;
+    width: 100%;
+    /* height: 896rpx; */
     position: relative;
 }
-.notdata image{
+
+/* .notdata image{
     width: inherit;
     height: inherit;
-}
-.notdata view {
+} */
+/* .notdata view {
     position: absolute;
     width: 230rpx;
     height: 100rpx;
@@ -103,7 +104,7 @@ page{
     bottom: 175rpx;
     left: 200rpx;
     font-weight: 500;
-}
+} */
 
 .jindu-title {
     text-align: center;
