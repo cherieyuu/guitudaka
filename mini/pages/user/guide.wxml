@@ -1,0 +1,12 @@
+<!--pages/user/guide.wxml-->
+<view class="guide">
+	<view>主页各部分功能如图：</view>
+	<image src="../../image/guide/guide-v1-1.jpg" />
+	<view>1、创建新打卡任务，创建之后不删除会一直存在，每天重置打卡状态保证可以每日打卡。</view>
+	<image src="../../image/guide/guide-v1-2.jpg" />
+	<view>2、点击打卡任务后的任务详情页面，可以看到该任务已经打卡过的日期，也可以在该页面删除任务。</view>
+	<image src="../../image/guide/guide-v1-3.jpg" />
+	<view>3、点击主页左侧的时间，可以选择展示之前日期的打卡记录，之前记录的“完成”按钮会无法点击。</view>
+	<image src="../../image/guide/guide-v1-4.jpg" />
+	<image src="../../image/guide/guide-v1-5.jpg" />
+</view>

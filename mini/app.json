@@ -4,6 +4,7 @@
         "pages/task/detail",
         "pages/adddream/index",
         "pages/user/index",
+        "pages/user/guide",
         "pages/shareappmessage/index",
         "pages/login/index"
     ],

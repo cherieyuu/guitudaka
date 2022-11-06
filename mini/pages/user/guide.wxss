@@ -1,0 +1,10 @@
+/* pages/user/guide.wxss */
+.guide {
+	padding: 36rpx;
+	width: 620rpx;
+}
+
+.guide image {
+	width: 600rpx;
+	height: 1260rpx;
+}

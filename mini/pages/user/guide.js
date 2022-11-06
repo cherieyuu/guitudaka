@@ -1,11 +1,11 @@
-// pages/user/index.js
+// pages/user/guide.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        userinfo: wx.getStorageSync('user'),
+
     },
 
     /**
@@ -62,11 +62,5 @@ Page({
      */
     onShareAppMessage() {
 
-    },
-
-    toUserGuide() {
-        wx.navigateTo({
-          url: './guide',
-        })
     }
 })
