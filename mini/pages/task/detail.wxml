@@ -1,8 +1,13 @@
 <!--pages/task/detail.wxml-->
 <view class="detail-page">
-	<view class="box-container" wx:if="{{taskPunchList.length > 0}}">
-		该任务已打卡日期：
-		<view wx:for="{{taskPunchList}}" class="punch-item-container">{{item.punch_time}}</view>
+	<view wx:if="{{taskPunchList.length > 0}}">
+		<view class="chart-container">
+			<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ec}}" />
+		</view>
+		<view class="box-container">
+			该任务已打卡日期：
+			<view wx:for="{{taskPunchList}}" class="punch-item-container">{{item.punch_time}}</view>
+		</view>
 	</view>
 	<view wx:else>
 		该任务还未进行过打卡。
