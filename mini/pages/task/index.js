@@ -151,11 +151,14 @@ Page({
     // })
   },
   async complete(e) {
-    console.log(e);
+    const cTime = new Date();
     db.collection('task_punch').add({
       data: {
         task_id: e.currentTarget.dataset.id,
-        punch_time: Date.now()
+        punch_time: cTime.getTime(),
+        punch_year: cTime.getFullYear(),
+        punch_month: cTime.getMonth() + 1, // getMonth return [0, 11]
+        punch_day: cTime.getDate(),
       }
     }).then(() => {
       this.getTaskList();
