@@ -38,3 +38,12 @@ page {
 	height: 500rpx;
 	margin-bottom: 20rpx;
 }
+
+.time-tab {
+  display: flex;
+  justify-content: center;
+}
+
+.time-tab-active {
+  border: 1rpx solid #00000087;
+}

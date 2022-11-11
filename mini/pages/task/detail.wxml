@@ -1,9 +1,15 @@
 <!--pages/task/detail.wxml-->
 <view class="detail-page">
 	<view wx:if="{{taskPunchList.length > 0}}">
-		<view class="chart-container">
-			<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ec}}" />
-		</view>
+    <view>
+      <view class="time-tab">
+        <view class="{{currentTab === 'day' ? 'time-tab-active' : null}}" bindtap="changeTab" data-tab="day">日度</view>
+        <view class="{{currentTab === 'month' ? 'time-tab-active' : null}}" bindtap="changeTab" data-tab="month">月度</view>
+      </view>
+      <view class="chart-container">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ec}}" />
+      </view>
+    </view>
 		<view class="box-container">
 			该任务已打卡日期：
 			<view wx:for="{{taskPunchList}}" class="punch-item-container">{{item.punch_time}}</view>

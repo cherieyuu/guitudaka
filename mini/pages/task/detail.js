@@ -17,7 +17,9 @@ Page({
 
         ec: {
             lazyLoad: true
-        }
+        },
+
+        currentTab: 'day', // enum day, month
     },
 
     setChart: function(option) {
@@ -39,7 +41,7 @@ Page({
         this.setData({taskId: options.taskId});
         this.getUserCreateTime();
         this.getTaskPunchList().then(() => { // 因为HTML中有if，会得到打卡列表后才渲染DOM
-            this.getBarChartData();
+            this.getDayBarChartData();
             this.chartComponent = this.selectComponent('#mychart-dom-bar');
         });
 
@@ -70,7 +72,7 @@ Page({
         return this.setData({ taskPunchList });
     },
 
-    async getBarChartData() {
+    async getDayBarChartData() {
         // 如果不加冗余字段，需要在groupby里写函数
         // select count(*) 
         //     from task_punch
@@ -132,11 +134,71 @@ Page({
                     data: barChartDataYaxis,
                     type: 'bar'
                 }
-            ]
+            ],
+            tooltip: {
+              trigger: 'axis'
+            }
         }
         console.log('chart1111', chart);
         this.setChart(option);
     },
+
+    async getMonthBarChartData() {
+      const dbBarChartData = await db.collection('task_punch')
+      .aggregate()
+      .match({
+          task_id: this.data.taskId
+      })
+      .group({
+          _id: '$punch_month',
+          groupCount: db.command.aggregate.sum(1)
+      })
+      .end()
+      console.log('dbBarChartData', dbBarChartData);
+
+      // 数据补零
+      let minMonth = 13, maxMonth = 0;
+      dbBarChartData.list.forEach((item) => {
+        if (minMonth > item._id) {
+          minMonth = item._id;
+        }
+        if (maxMonth < item._id) {
+          maxMonth = item._id;
+        }
+      });
+      const dayRange = [];
+      for (let i = minMonth; i <= maxMonth; i++) {
+        dayRange.push(i);
+      }
+      const barChartDataXaxis = [];
+      const barChartDataYaxis = [];
+      for (let i = minMonth; i <= maxMonth; i++) {
+          barChartDataXaxis.push(i);
+          const index = dbBarChartData.list.findIndex((item) => item._id === i);
+          index >= 0 ? barChartDataYaxis.push(dbBarChartData.list[index].groupCount) : barChartDataYaxis.push(0);
+          console.log(i, barChartDataXaxis, barChartDataYaxis);
+      }
+
+      const option = {
+          xAxis: {
+              data: barChartDataXaxis
+          },
+          yAxis: {
+              type: 'value'
+          },
+          series: [
+              {
+                  data: barChartDataYaxis,
+                  type: 'bar'
+              }
+          ],
+          tooltip: {
+            trigger: 'axis'
+          }
+      }
+      console.log('chart1111', chart);
+      this.setChart(option);
+  },
 
     deleteTask() {
         db.collection('task').doc(this.data.taskId).update({
@@ -194,5 +256,14 @@ Page({
      */
     onShareAppMessage() {
 
+    },
+
+    changeTab(e) {
+      const tab = e.currentTarget.dataset.tab;
+      if (this.data.currentTab === tab) {
+        return;
+      }
+      tab === 'day' ? this.getDayBarChartData() : this.getMonthBarChartData();
+      this.setData({ currentTab: tab });
     }
 })
