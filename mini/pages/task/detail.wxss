@@ -47,3 +47,7 @@ page {
 .time-tab-active {
   border: 1rpx solid #00000087;
 }
+
+.xx {
+	color: #dadada
+}

@@ -5,9 +5,12 @@
 		<image class="user-avatar" src="{{userinfo.avatarUrl}}"></image>
 		<view class="user-name">{{userinfo.nickName}}</view>
 	</view>
+	<view class="chart-container">
+		<ec-canvas id="mychart-dom-heatmap" canvas-id="mychart-heatmap" ec="{{ec}}" />
+	</view>
 	<view class="user-context">
 		<view bindtap="toUserGuide">用户手册</view>
-		<view class="gray-bg">版本详情</view>
+		<!-- <view class="gray-bg">版本详情</view> -->
 		<view class="gray-bg">关于开发者</view>
 		<view class="gray-bg">...</view>
 	</view>

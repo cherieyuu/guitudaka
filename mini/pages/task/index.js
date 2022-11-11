@@ -159,6 +159,7 @@ Page({
         punch_year: cTime.getFullYear(),
         punch_month: cTime.getMonth() + 1, // getMonth return [0, 11]
         punch_day: cTime.getDate(),
+        user_id: userId,
       }
     }).then(() => {
       this.getTaskList();
@@ -304,6 +305,7 @@ Page({
    */
   onShow() {
     console.log('onShow', this.data);
+    userId = wx.getStorageSync('userId');
     this.getTaskList();
   },
 
