@@ -164,7 +164,7 @@ Page({
     }).then(() => {
       this.getTaskList();
       wx.showToast({
-        title: '恭喜实现愿望！',
+        title: '打卡完成！',
         icon: 'success',
         duration: 2000
       })

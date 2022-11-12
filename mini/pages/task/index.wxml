@@ -4,7 +4,7 @@
         <view>
             <view class="jindu-title" wx:if="{{showToday}}">今日进度</view>
             <view class="jindu-title" wx:else>当日进度</view>
-            <view class="pie" style="--percentage: {{taskDonePercent}}">{{taskDonePercent === 0 && showToday ? '今天还没有打卡哦，快去打卡吧！' : ''}}</view>
+            <view class="pie" style="--percentage: {{taskDonePercent}}">{{taskDonePercent === 0 && showToday ? '今天还没有打卡哦，快去打卡吧！' : ''}}{{taskDonePercent === 100 ? '恭喜已经完成本日所有打卡计划！' : ''}}</view>
             <view class="divide-line"></view>
             <view class="divide-line"></view>
         </view>
