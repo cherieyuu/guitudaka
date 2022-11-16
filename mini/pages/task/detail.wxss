@@ -14,6 +14,8 @@ page {
 .box-container {
 	border: 10rpx solid rgb(180, 197, 201);
 	padding: 12rpx;
+	height: 360rpx;
+	overflow: scroll;
 }
 
 .punch-item-container {

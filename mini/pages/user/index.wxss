@@ -1,6 +1,6 @@
 /* pages/user/index.wxss */
 page{
-	background-color: #E7F1FC;
+	background-color: rgb(41, 118, 121);
 	width: 750rpx;
 }
 
@@ -26,7 +26,7 @@ page{
 
 .user-name {
 	text-align: center;
-	color: #FFF;
+	color: rgb(17, 12, 12);
 	font-size: 36rpx;
 	margin: 10rpx 0 20rpx 0;
 }
@@ -38,12 +38,12 @@ page{
 
 .wave-container {
 	position: absolute;
-	top: -680rpx;
-	left: -350rpx;
-	width: 1500rpx;
-	height: 1500rpx;
-	background-color: rgb(41, 118, 121);
-	border-radius: 40%;
+	top: -1200rpx;
+	left: -650rpx;
+	width: 2000rpx;
+	height: 2000rpx;
+	background-color: #E7F1FC;
+	border-radius: 43%;
 	animation: rotate 8s linear infinite;
 	z-index: -1;
 }
@@ -55,9 +55,9 @@ page{
 
 .user-context view {
 	width: 50%;
-	background-color: rgb(41, 118, 121);
+	background-color: #E7F1FC;
 	border-radius: 36rpx;
-	color: #FFF;
+	color: rgb(41, 118, 121);
 	margin-top: 30rpx;
 	padding: 10rpx 30rpx;
 	font-size: 36rpx;

@@ -89,7 +89,7 @@ Page({
                 borderWidth: 0.1,
                 itemStyle: {
                     borderWidth: 0.2,
-                    color: '#b8b8b8',
+                    color: 'rgba(165, 154, 154, 0.267)',
                     borderColor: '#00000033',
                 },
                 yearLabel: { show: false }
