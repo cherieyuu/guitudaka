@@ -7,6 +7,11 @@ page{
     box-sizing: border-box;
 }
 
+.mantle{
+    background-color: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
 .mydream-top-container {
     display: flex;
     justify-content: space-between;
@@ -22,6 +27,11 @@ page{
     background-repeat: no-repeat;
     border-radius: 50%;
 }
+
+.mydream_main {
+    padding-bottom: 24rpx;
+}
+
 .mydream_main_container{
     margin: 24rpx auto;
     width: 683rpx;
@@ -140,4 +150,32 @@ page{
 
 .gray-bg {
     background-color: rgb(230, 221, 221);
+}
+
+.share-pic-bt {
+    margin-bottom: 24rpx;
+}
+
+.poster-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60rpx;
+    z-index: 9;
+}
+
+.footer-bt {
+    margin: 24rpx;
+    display: flex;
+    width: 80%;
+}
+
+.footer-bt .save-bt {
+    margin-left: 12rpx;
+    background-color:rgb(201, 187, 218);
 }

@@ -1,10 +1,11 @@
 <!--pages/task/index.wxml-->
-<view class="mydream">
+<view class="my-dream {{isShowPoster ? 'mantle' : ''}}">
     <view class="mydream_main">
         <view>
             <view class="jindu-title" wx:if="{{showToday}}">今日进度</view>
             <view class="jindu-title" wx:else>当日进度</view>
             <view class="pie" style="--percentage: {{taskDonePercent}}">{{taskDonePercent === 0 && showToday ? '今天还没有打卡哦，快去打卡吧！' : ''}}{{taskDonePercent === 100 ? '恭喜已经完成本日所有打卡计划！' : ''}}</view>
+            <button class="share-pic-bt" bindtap="generatePoster" wx:if="{{taskDonePercent === 100 && showToday}}">点击生成分享海报</button>
             <view class="divide-line"></view>
             <view class="divide-line"></view>
         </view>
@@ -15,7 +16,7 @@
                 </picker>
                 <view bindtap="addrouter" class="mydream_add"></view>
             </view>
-            <view wx:if="{{taskList.length>0}}">
+            <view class="mgbt-24" wx:if="{{taskList.length>0}}">
                 <view class="mydream_main_container slide" wx:for="{{taskList}}" wx:key="index" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
                     <view bindtap="router" data-item="{{item}}" data-id="{{item._id}}" class="mydream_main_container_size {{item.isDone ? 'gray-bg' : ''}}">{{item.task_des}}</view>
                     <view wx:if="{{item.isDone === true}}">
@@ -30,5 +31,12 @@
                 <view>还没有打卡计划~ 快来创建吧！</view>
             </view>
         </view>
+    </view>
+</view>
+<view wx:if="{{isShowPoster}}" class='poster-container'>
+    <canvas style="height: 480px; width: 80%;" id="posterCanvas" type="2d" />
+    <view class="footer-bt">
+        <button class="close-bt" bindtap="setShowPosterFalse">关闭</button>
+        <button class="save-bt" bindtap="savePoster">保存到相册</button>
     </view>
 </view>

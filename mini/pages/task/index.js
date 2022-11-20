@@ -4,6 +4,7 @@ const { getDay, getCurrentDayStart, getCurrentDayEnd } = require("../../utils/ut
 const app = getApp()
 const db = wx.cloud.database();
 let userId;
+let sharePicUrl;
 
 Page({
 
@@ -22,7 +23,13 @@ Page({
 
     // 滑动的起始坐标
     startX: 0,
-    startY: 0
+    startY: 0,
+
+    // 海报
+    isShowPoster: false,
+    width: 0,
+    height: 0,
+    ratio: 0,
   },
 
   /**
@@ -33,6 +40,7 @@ Page({
     // this.init();
     console.log('onLoad', this.data);
     userId = wx.getStorageSync('userId');
+    this.setData({ userInfo: wx.getStorageSync('user') });
     this.initUserDay();
     this.setCurrentDay(getDay(new Date()));
     this.getTaskList();
@@ -341,4 +349,136 @@ Page({
   /**
    * 用户点击右上角分享
    */
+
+  generatePoster() {
+    this.setData({
+      isShowPoster: true,
+    })
+
+    wx.showLoading({
+      title: '生成海报中～',
+      mask: true,
+    });
+    this.setData({
+      hidden: 'hidden'
+    });
+
+    wx.createSelectorQuery().select('#posterCanvas')
+    .fields({
+      node: true,
+      size: true
+    })
+    .exec(async (res) => {
+      const cvs = res[0].node;
+      const width = res[0].width;
+      const height = res[0].height;
+      cvs.width = 800;
+      cvs.height = 1200;
+      const ctx = cvs.getContext('2d');
+
+      // const imageData = ctx.getImageData(0, 0, cvs.width, cvs.height);
+      // for (let i = 0; i < imageData.data.length; i += 4) {
+      //   // 当该像素是透明的，则设置成白色
+      //   if (imageData.data[i + 3] === 0) {
+      //     imageData.data[i] = 255;
+      //     imageData.data[i + 1] = 255;
+      //     imageData.data[i + 2] = 255;
+      //     imageData.data[i + 3] = 255;
+      //   }
+      // }
+      // ctx.putImageData(imageData, 0, 0);
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, cvs.width, cvs.height);
+
+      const bg_img = cvs.createImage();
+      await new Promise(resolve => {
+        bg_img.onload = resolve;
+        bg_img.src = "../../image/bg/poster_bg.jpg";
+      })
+      ctx.drawImage(bg_img, 0, 0, 800, 900);
+
+      const guitu_code_img = cvs.createImage();
+      await new Promise(resolve => {
+        guitu_code_img.onload = resolve;
+        guitu_code_img.src = '../../image/code/guitu_wxcode.jpg';
+      })
+      ctx.drawImage(guitu_code_img, 640, 1040, 150, 150);
+
+      ctx.fillStyle = "#cccccc";
+      ctx.font = '26px 楷体'
+      ctx.fillText('龟兔打卡', 30, 1140);
+      ctx.fillText('记录每一点滴成长', 30, 1180);
+
+      ctx.fillStyle = "white";
+      ctx.shadowColor = '#cccccc';
+      ctx.shadowBlur = 20;
+      ctx.fillRect(100, 650, 600, 400);
+
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#cccccc';
+      ctx.beginPath();
+      ctx.moveTo(130, 800);
+      ctx.lineTo(670, 800);
+      ctx.closePath();
+      ctx.stroke();
+
+      ctx.save();
+      const avatar_img = cvs.createImage();
+      await new Promise(resolve => {
+        wx.downloadFile({
+          url: this.data.userInfo.avatarUrl,
+          success: (downFileRes) => {
+            avatar_img.onload = resolve;
+            avatar_img.src = downFileRes.tempFilePath;
+          }
+        });
+      })
+      ctx.arc(180, 720, 60, 0, Math.PI * 2, false);
+      ctx.clip();
+      ctx.drawImage(avatar_img, 120, 660, 120, 120);
+      ctx.restore();
+      
+      ctx.fillStyle = "#333333";
+      ctx.font = '30px 楷体'
+      ctx.fillText(this.data.userInfo.nickName, 260, 710);
+      ctx.fillStyle = "#999999";
+      ctx.font = '20px 楷体'
+      ctx.fillText(this.data.currentDay, 260, 750);
+
+      ctx.fillStyle = "#967bb7";
+      ctx.font = '40px 楷体'
+      ctx.fillText('今日已打卡:', 120, 850);
+      ctx.fillStyle = "#333333";
+      ctx.font = '30px 楷体'
+      this.data.taskList.map((item, index) => {
+        ctx.fillText('- ' + item.task_des, 140, 870 + 30 * ( index + 1 ));
+      })
+
+      wx.canvasToTempFilePath({
+        canvas: cvs,
+        success: (res) => {
+          wx.hideLoading();
+          sharePicUrl = res.tempFilePath;
+        }
+      })
+    })
+  },
+
+  savePoster() {
+    wx.saveImageToPhotosAlbum({
+      filePath: sharePicUrl,
+      success: (res) => {
+        wx.showToast({
+          title: '保存成功',
+          icon: 'success',
+        })
+      }
+    })
+  },
+
+  setShowPosterFalse() {
+    this.setData({
+      isShowPoster: false,
+    })
+  }
 })
