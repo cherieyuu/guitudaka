@@ -179,3 +179,21 @@ page{
     margin-left: 12rpx;
     background-color:rgb(201, 187, 218);
 }
+
+.add-task-input {
+    border: 1px solid rgb(196, 195, 195);
+    margin: 12rpx 0 24rpx;
+    padding: 12rpx;
+}
+
+.add-task-checkbox {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.add-task-checkbox .checkbox-item {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 12rpx 24rpx 12rpx 0;
+}

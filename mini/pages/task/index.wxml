@@ -14,7 +14,7 @@
                 <picker mode="date" start="{{userStartDay}}" end="{{userEndDay}}" value="{{currentDay}}" bindchange="bindDatePickerChange">
                     <view>{{currentDay}}</view>
                 </picker>
-                <view bindtap="addrouter" class="mydream_add"></view>
+                <view bindtap="setShowAddTaskModal" class="mydream_add"></view>
             </view>
             <view class="mgbt-24" wx:if="{{taskList.length>0}}">
                 <view class="mydream_main_container slide" wx:for="{{taskList}}" wx:key="index" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
@@ -30,6 +30,22 @@
             <view class="notdata" wx:else>
                 <view>还没有打卡计划~ 快来创建吧！</view>
             </view>
+            <modal hidden="{{!showAddTaskModal}}" title="新建任务" confirm-text="{{taskList.length < 5 ? '提交' : '还是取消'}}" cancel-text="取消" bindcancel="onModalCancel" bindconfirm="{{taskList.length < 5 ? 'onModalConfirm' : 'onModalCancel'}}">
+                <view wx:if="{{taskList.length < 5}}">
+                    <view>打卡内容：</view>
+                    <input class="add-task-input" placeholder="请输入任务内容" maxlength="10" model:value="{{formInputValue}}" />
+                    <view>打卡频次：</view>
+                    <checkbox-group class="add-task-checkbox" bindchange="listenCheckboxChange">
+                        <view class="checkbox-item" wx:for="{{formCheckBoxList}}">
+                            <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+                        </view>
+                    </checkbox-group>
+                </view>
+                <view wx:else>
+                    <view>您的当日任务已经达到/超过五条，不要太压榨自己啦。</view>
+                    <view>如有新建需求请择一删除</view>
+                </view>
+            </modal>
         </view>
     </view>
 </view>

@@ -1,4 +1,4 @@
-const { getDay, getCurrentDayStart, getCurrentDayEnd } = require("../../utils/util");
+const { getDay, getCurrentDayStart, getCurrentDayEnd, getCurrentDayWeek } = require("../../utils/util");
 
 // pages/task/index.js
 const app = getApp()
@@ -20,6 +20,18 @@ Page({
     showToday: true,
     userStartDay: "",
     userEndDay: "",
+
+    showAddTaskModal: false,
+    formInputValue: '',
+    formCheckBoxList: [
+      {name: '星期一', value: '1', checked: true},
+      {name: '星期二', value: '2', checked: true},
+      {name: '星期三', value: '3', checked: true},
+      {name: '星期四', value: '4', checked: true},
+      {name: '星期五', value: '5', checked: true},
+      {name: '星期六', value: '6', checked: true},
+      {name: '星期日', value: '7', checked: true},
+    ],
 
     // 滑动的起始坐标
     startX: 0,
@@ -64,6 +76,7 @@ Page({
     let data, taskListResp;
     const currentDayStart = getCurrentDayStart(this.data.currentDay);
     const currentDayEnd = getCurrentDayEnd(this.data.currentDay);
+    const currentWeek = getCurrentDayWeek(this.data.currentDay);
     wx.showLoading({
       title: 'loading...',
       mask: true,
@@ -94,8 +107,11 @@ Page({
             )
             .get();  
     }
+    taskListResp = taskListResp.data.filter((item) => 
+    item.task_frequency_num ? item.task_frequency_num.includes(currentWeek) : true
+    )
     console.log('taskListResp', taskListResp);
-    data = await Promise.all(taskListResp.data.map(async (taskItem) => {
+    data = await Promise.all(taskListResp.map(async (taskItem) => {
       const getTaskPunchResp =  await db.collection('task_punch')
         .where({
           task_id: taskItem._id,
@@ -177,34 +193,6 @@ Page({
         duration: 2000
       })
     });
-  },
-  addrouter() {
-    const that = this;
-    wx.showModal({
-      title: '创建新任务',
-      cancelColor: 'cancelColor',
-      editable: true,
-      placeholderText: '请输入任务内容',
-      confirmText: '提交',
-      success (res) {
-        if (res.confirm) {
-          console.log('用户点击确定', res);
-          db.collection('task').add({
-            data: {
-              user_id: userId,
-              task_des: res.content,
-              create_time: Date.now(),
-              is_deleted: false,
-            }
-          }).then(() => that.getTaskList());
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-    // wx.navigateTo({
-    //   url: `../adddream/index?content=${true}&modifyshow=${true}&buttonshow=${false}`,
-    // })
   },
 
   setShowToday(v) {
@@ -480,5 +468,62 @@ Page({
     this.setData({
       isShowPoster: false,
     })
+  },
+
+  setShowAddTaskModal() {
+    this.setData({
+      showAddTaskModal: true
+    })
+  },
+
+  onModalCancel() {
+    this.setData({
+      showAddTaskModal: false,
+      formInputValue: '',
+      formCheckBoxList: [
+        {name: '星期一', value: '1', checked: true},
+        {name: '星期二', value: '2', checked: true},
+        {name: '星期三', value: '3', checked: true},
+        {name: '星期四', value: '4', checked: true},
+        {name: '星期五', value: '5', checked: true},
+        {name: '星期六', value: '6', checked: true},
+        {name: '星期七', value: '7', checked: true},
+      ],
+    })
+  },
+
+  listenCheckboxChange(e) {
+    console.log(e.detail.value);
+    console.log(this.data.formCheckBoxList);
+    const newCheckedList = this.data.formCheckBoxList.map((item) => {
+      if (e.detail.value.includes(item.value)) return item;
+      return { ...item, checked: false };
+    })
+    console.log(newCheckedList);
+    this.setData({
+      formCheckBoxList: newCheckedList
+    });
+  },
+
+  onModalConfirm() {
+    const that = this;
+    const checkedBoxList = [];
+    this.data.formCheckBoxList.forEach((item) => {
+      if (item.checked) checkedBoxList.push(item.value);
+    })
+    console.log('checkedBoxList', checkedBoxList);
+    db.collection('task').add({
+      data: {
+        user_id: userId,
+        task_des: this.data.formInputValue,
+        task_frequency_type: 'deterministic',
+        task_frequency_num: checkedBoxList.join(','),
+        create_time: Date.now(),
+        is_deleted: false,
+      }
+    }).then(() => {
+      that.onModalCancel();
+      that.getTaskList();
+    });
   }
 })

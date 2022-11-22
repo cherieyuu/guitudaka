@@ -51,10 +51,16 @@ const getCurrentDayEnd = day => {
   return Date.parse(day.replace(/-/g, '/') + ' 23:59:59');
 }
 
+const getCurrentDayWeek = day => {
+  const week = new Date(day).getDay(); // 获取当前星期X(0-6,0代表星期天)
+  return week === 0 ? 7 : week;
+}
+
 module.exports = {
   formatTime,
   openidData,
   getDay,
   getCurrentDayStart,
-  getCurrentDayEnd
+  getCurrentDayEnd,
+  getCurrentDayWeek
 }
