@@ -438,7 +438,7 @@ Page({
       ctx.fillText('今日已打卡:', 120, 850);
       ctx.fillStyle = "#333333";
       ctx.font = '30px 楷体'
-      this.data.taskList.map((item, index) => {
+      this.data.taskList.slice(0,5).map((item, index) => {
         ctx.fillText('- ' + item.task_des, 140, 870 + 30 * ( index + 1 ));
       })
 

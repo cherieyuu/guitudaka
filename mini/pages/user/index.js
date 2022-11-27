@@ -87,6 +87,13 @@ Page({
                 cellSize: [10, 12],
                 range: `${year}-${month}`,
                 borderWidth: 0.1,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                      color: '#00000036',
+                      type: 'solid'
+                    }
+                },
                 itemStyle: {
                     borderWidth: 0.2,
                     color: 'rgba(165, 154, 154, 0.267)',
